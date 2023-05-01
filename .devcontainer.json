@@ -1,0 +1,18 @@
+{
+    "remoteUser": "local",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "twxs.cmake",
+                "ms-vscode.cmake-tools",
+                "timonwong.shellcheck",
+                "mkhl.shfmt",
+                "llvm-vs-code-extensions.vscode-clangd"
+            ]
+        }
+    },
+    "postCreateCommand": "./run_build.sh"
+}
