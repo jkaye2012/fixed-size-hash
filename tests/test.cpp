@@ -31,7 +31,7 @@ TEST_CASE("Array hash should work", "[hash][array]") {
   CHECK(!m.contains({"x", "y", "z"}));
 }
 
-TEST_CASE("Tuple hash should work", "[hash][array]") {
+TEST_CASE("Tuple hash should work", "[hash][tuple]") {
   using Tuple = std::tuple<std::string, std::size_t, int>;
   using Map = std::unordered_map<Tuple, std::size_t>;
 
