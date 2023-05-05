@@ -3,7 +3,7 @@ FROM ubuntu:latest
 USER root
 
 RUN apt update && apt install -y \
-    clang-15 clang-format-15 clang-tidy-15 clang-tools-15 clang-15-doc \
+    clang-15 clang-format-15 clang-tidy-15 clang-tools-15 clangd-15 clang-15-doc \
     build-essential cmake git vim shellcheck shfmt sudo
 RUN ln -sf /usr/bin/clang-15 /usr/local/bin/clang
 RUN ln -sf /usr/bin/clang++-15 /usr/local/bin/clang++
