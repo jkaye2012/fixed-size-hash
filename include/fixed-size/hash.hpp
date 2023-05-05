@@ -29,9 +29,4 @@ struct hash {
     return hash_impl<std::tuple_size_v<C> - 1, C>{}(c);
   }
 };
-
-template <typename T>
-struct fixed_hash {
-  std::size_t operator()(T const& t) const noexcept {}
-};
 }  // namespace fixed_size
