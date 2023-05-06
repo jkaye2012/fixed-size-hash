@@ -1,14 +1,16 @@
-#include <array>
 
-#include <catch2/catch_test_macros.hpp>
+#include <catch2/catch_all.hpp>
 
 #include <cstddef>
 #include <cstdint>
+#include <functional>
 #include <string>
 #include <tuple>
 #include <unordered_map>
 #include <utility>
+#include <vector>
 
+#include "fixed-size/hash.hpp"
 #include "fixed-size/prelude.hpp"
 
 TEST_CASE("Pair hash should work", "[hash][pair]") {
@@ -38,4 +40,15 @@ TEST_CASE("Tuple hash should work", "[hash][tuple]") {
   Map m{{{"foobar", 1, 2}, 123}, {{"baz", 3, 4}, 234}};
   CHECK(m.at({"baz", 3, 4}) == 234);
   CHECK(!m.contains({"something", 121, 90}));
+}
+
+TEST_CASE("Benchmark", "[benchmark]") {
+  using Array = std::array<std::size_t, 10000>;
+  Array arr;
+  for (auto i = 0; i < arr.size(); ++i) {
+    arr[i] = std::rand() / ((RAND_MAX + 1u) / 6);
+  }
+
+  BENCHMARK("Template recursion") { return std::hash<Array>{}(arr); };
+  BENCHMARK("For loop") { return fixed_size::array_hash_impl(arr); };
 }
