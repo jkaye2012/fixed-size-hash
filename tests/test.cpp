@@ -42,13 +42,20 @@ TEST_CASE("Tuple hash should work", "[hash][tuple]") {
   CHECK(!m.contains({"something", 121, 90}));
 }
 
-TEST_CASE("Benchmark", "[benchmark]") {
-  using Array = std::array<std::size_t, 10000>;
+TEST_CASE("Benchmarks", "[benchmark]") {
+  using Array = std::array<std::size_t, 100>;
   Array arr;
   for (auto i = 0; i < arr.size(); ++i) {
     arr[i] = std::rand() / ((RAND_MAX + 1u) / 6);
   }
 
-  BENCHMARK("Template recursion") { return std::hash<Array>{}(arr); };
-  BENCHMARK("For loop") { return fixed_size::array_hash_impl(arr); };
+  using Tuple = std::tuple<std::size_t, std::size_t, std::size_t>;
+  Tuple tup{1, 2, 3};
+
+  using Pair = std::pair<std::size_t, std::size_t>;
+  Pair pair{4, 5};
+
+  BENCHMARK("Pair performance") { return std::hash<Pair>{}(pair); };
+  BENCHMARK("Tuple performance") { return std::hash<Tuple>{}(tup); };
+  BENCHMARK("Array performance") { return std::hash<Array>{}(arr); };
 }
