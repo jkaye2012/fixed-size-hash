@@ -23,6 +23,7 @@ TEST_CASE("Pair hash should work", "[hash][pair]") {
   CHECK(m.at({1, 2}) == "buckle my shoe");
   CHECK(!m.contains({1, 1}));
 }
+//
 
 TEST_CASE("Array hash should work", "[hash][array]") {
   using Array = std::array<std::string, 3>;
