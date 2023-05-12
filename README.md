@@ -81,6 +81,12 @@ requires(C c, std::size_t seed, std::size_t val)
 {
   { c(seed, val) } -> std::convertible_to<std::size_t>;
 };
+```
+
+This concept is provided by the `fixed-size/hash.hpp` header. A complete example:
+
+```c++
+#include "fixed-size/hash.hpp"
 
 struct custom_combine {
   std::size_t operator()(std::size_t seed, std::size_t val) const noexcept {
